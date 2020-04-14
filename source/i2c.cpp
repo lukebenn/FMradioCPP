@@ -1,20 +1,12 @@
-#include <stdio.h>
-#include "clock_config.h"
 #include "LPC802.h"
-#include <math.h>
-#include "fsl_debug_console.h"
-#include "arduino.h"
 #include "i2c.h"
 
 void I2Cinit(void){
-
+	// Step 1: Connect I2C module to outer pins via Switch Matrix
 	I2CChangePin(I2C_DEFAULT_SDA_PIN, I2C_DEFAULT_SDA_PIN);
 	// ------------------------------------------------------------
 	// Step 2: Turn on the I2C module via the SYSCON clock enable pin
-	// debug: just i2c
 	SYSCON->SYSAHBCLKCTRL0 |= (SYSCON_SYSAHBCLKCTRL0_I2C0_MASK );// I2C CLOCK is on
-	// debug: in the demo code they don't seem to reset the i2c clock.
-	// debug: just i2c
 
 	// Put 0 in the GPIO, GPIO Interrupt and I2C reset bit to reset it.
 	// Then put a 1 in the GPIO, GPIO Interrupt and I2C reset bit to allow them to operate.
@@ -56,7 +48,7 @@ void I2Cinit(void){
 	// I2C_MasterSetBaudRate() function is helpful.
 	// ------------------------------------------------------------
 	// Set i2C bps to 100kHz assuming an input clock of 12MHz
-	I2C_MasterSetBaudRate(100000, 12000000);
+	I2C_MasterSetBaudRate(LPC_I2C0BAUDRate, 12000000);
 	// after this, CLKDIV is 0x9 and MSTTIME is 0x44.
 	// MSTTIME = 0x44 means: MSTSCLLOW [2:0] is CLOCKS_6 // MSTCLHIGH [6:4] is CLOCKS_6
 }
@@ -126,9 +118,6 @@ void I2C_MasterSetBaudRate(uint32_t baudRate_Bps, uint32_t srcClock_Hz){
 //	Dynamic Pin Change For Fixing an Issue
 // 	With Finicky FM Chip
 void I2CChangePin(uint8_t SDApin, uint8_t SCLpin){
-
-	// ------------------------------------------------------------
-	// Step 1: Connect I2C module to outer pins via Switch Matrix
 	// PIO0_16 is connected to the SCL line
 	// PIO0_10 is connected to the SDA line
 	// PINASSIGN5 bits 15:8 are for SCL. Therefore fill with value 16
@@ -142,8 +131,6 @@ void I2CChangePin(uint8_t SDApin, uint8_t SCLpin){
 	 (SDApin<<SWM_PINASSIGN5_I2C0_SDA_IO_SHIFT));// put 10 in bits 7:0 // PINASSIGN5 should be 0xffff100a after this.
 	// disable the switch matrix
 	SYSCON->SYSAHBCLKCTRL0 &= ~(SYSCON_SYSAHBCLKCTRL0_SWM_MASK);
-	// ---------------- End of Switch Matrix code -----------------------------------
-
 	return;
 }
 

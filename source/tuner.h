@@ -39,20 +39,6 @@
 #define WRITECHAN_MASK_LOW  	(0b11000000)
 #define WRITECHAN_MASK_HIGH 	(0b11111111)
 
-#define RDS_GROUP_READY_MASK 	(0b10000000)
-#define RDS_SYNC_MASK			(0b00010000)
-#define RDS_BLOCKE_MASK			(0b00001000)
-#define HIGH_16BIT_MASK			(0xFF00)
-#define LOW_16BIT_MASK			(0x00FF)
-
-/*TODO:
- * FUNCTIONS:
- * 	RDS STUFF
- *		- Read interrupt
- *		- Set RDS bit
- *		- Translate to string and store
- */
-
 class Tuner {
 	uint8_t TunerReadBuf[12];	/*!< 6 16-bit registers with a high and low byte separated */
 	uint8_t TunerWriteBuf[12];  /*!< 6 16-bit registers with a high and low byte separated */
@@ -104,15 +90,17 @@ public:
 	/**
 	 * @brief Get channel chip is tuned to currently
 	 * 
-	 * @return int (Station in MHz * 10)
+	 * @return int station (Station in MHz * 10)
 	 */
 	int getStation();
 
 	/**
 	 * @brief Set volume of chip audio amplifier
 	 * 
+	 * Will return error if integer given is out of range
+	 * 
 	 * @param volume (0 to 15)
-	 * @return int 
+	 * @return int
 	 */
 	int setVolume(uint8_t volume);
 
