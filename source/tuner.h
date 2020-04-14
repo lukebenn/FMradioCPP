@@ -224,6 +224,7 @@ public:
 	 */
 	void mute(bool mute);
 
+
 	/**
 	 * @brief Enables the RDS module
 	 * 
