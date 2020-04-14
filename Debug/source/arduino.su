@@ -1,0 +1,5 @@
+arduino.cpp:4:5:int bit_test(char, char)	16	static
+arduino.cpp:10:5:int bit_true(char, char)	24	static
+arduino.cpp:17:6:void bit_reset(char, char*)	16	static
+arduino.cpp:23:6:void delayMicro(int)	24	static
+arduino.cpp:29:6:void delayMilli(int)	24	static

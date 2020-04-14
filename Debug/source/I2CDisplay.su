@@ -1,0 +1,15 @@
+I2CDisplay.cpp:6:1:Display::Display(uint8_t, uint8_t, uint8_t, uint8_t)	24	static
+I2CDisplay.cpp:16:6:void Display::init()	16	static
+I2CDisplay.cpp:71:6:void Display::printString(char*)	24	static
+I2CDisplay.cpp:79:6:void Display::clear()	16	static
+I2CDisplay.cpp:84:6:void Display::home()	16	static
+I2CDisplay.cpp:89:6:void Display::setCursor(uint8_t, uint8_t)	40	static
+I2CDisplay.cpp:97:6:void Display::noDisplay()	16	static
+I2CDisplay.cpp:101:6:void Display::display()	16	static
+I2CDisplay.cpp:106:6:void Display::noBacklight()	16	static
+I2CDisplay.cpp:110:6:void Display::backlight()	16	static
+I2CDisplay.cpp:114:6:void Display::print(uint8_t)	16	static
+I2CDisplay.cpp:119:6:void Display::command(uint8_t)	16	static
+I2CDisplay.cpp:123:6:void Display::send(uint8_t, uint8_t)	32	static
+I2CDisplay.cpp:131:6:void Display::writeAndUpdate(uint8_t)	16	static
+I2CDisplay.cpp:141:6:void Display::writeDevice(uint8_t)	16	static
