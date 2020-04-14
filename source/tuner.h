@@ -225,50 +225,6 @@ public:
 	void mute(bool mute);
 
 
-	/**
-	 * @brief Enables the RDS module
-	 * 
-	 * RDS and RBDS
-	 * (Radio Data System & Radio Broadcast System)
-	 * Are 2 types of data sent with a broadcast
-	 * to give Song Name + Artist and Station ID
-	 * 
-	 */
-	void enableRDS(void);
-
-	/**
-	 * @brief Disables the RDS module
-	 * 
-	 */
-	void disableRDS(void);
-
-	/**
-	 * @brief Status of RDS data block
-	 * 
-	 * @return true: New block of data ready
-	 * @return false: No new data
-	 */
-	bool rdsBlockReady(void);
-
-	/**
-	 * @brief Reads new RDS block
-	 * 
-	 * The RDS data is taken and stored in
-	 * a sperate buffer for later processing.
-	 * Old data is overwritten.
-	 * 
-	 */
-	void readRDSBlocks(void);
-
-	/**
-	 * @brief NO FUNCTION AT THIS POINT
-	 * 
-	 * Currrently this function is inoperable
-	 * 
-	 */
-
-	void processRDS(void);
-
 private:
 	//Low level commands______________________________________
 	/**

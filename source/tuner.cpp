@@ -209,28 +209,6 @@ void Tuner::mute(bool mute) {
 
 }
 
-bool Tuner::rdsBlockReady() {
-	if((TunerReadBuf[2] & FM_TRUE_MASK) > 0)
-		return true;
-	else
-		return false;
-}
-
-void Tuner::readRDSBlocks(void) {
-	memset(rdsBlocks, 0, sizeof(rdsBlocks));	//Clear Array
-	rdsBlocks[0] |= (TunerReadBuf[4] << 8);		//Save Everything
-	rdsBlocks[0] |= TunerReadBuf[5];
-	rdsBlocks[1] |= (TunerReadBuf[6] << 8);
-	rdsBlocks[1] |= TunerReadBuf[7];
-	rdsBlocks[2] |= (TunerReadBuf[8] << 8);
-	rdsBlocks[2] |= TunerReadBuf[9];
-	rdsBlocks[3] |= (TunerReadBuf[10] << 8);
-	rdsBlocks[3] |= TunerReadBuf[11];
-}
-
-void Tuner::processRDS(void) {
-	return;
-}
 
 
 void Tuner::readDevice(void) {
